@@ -57,12 +57,13 @@ class ListContainer extends React.Component {
 
         <Button onClick={this.props.handleBackToBoards}>Back To Boards</Button>
         <Button onClick={this.handleNewClick}>Add List</Button>
-        <div class="ListContainer">
+        <div className="ListContainer">
           {this.props.lists.map(e => (
             <List
+              key={e.id}
               name={e.name}
               id={e.id}
-              cards={this.props.cards.filter(c => c.list_id == e.id)}
+              cards={this.props.cards.filter(c => c.list_id === e.id)}
               addCard={this.props.addCard}
               itemDrop={this.props.handleItemDrop}
             />

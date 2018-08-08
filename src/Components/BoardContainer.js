@@ -55,9 +55,13 @@ class BoardContainer extends React.Component {
             onChange={e => this.text(e.target.value)}
           />
         </Modal>
-        <div class="BoardContainer">
+        <div className="BoardContainer">
           {this.props.boards.map(b => (
-            <Board name={b.name} onClick={() => this.props.handleClick(b.id)} />
+            <Board
+              key={b.id}
+              name={b.name}
+              onClick={() => this.props.handleClick(b.id)}
+            />
           ))}
         </div>
       </div>

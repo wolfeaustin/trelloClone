@@ -1,7 +1,6 @@
 import React from "react";
 import BoardContainer from "./BoardContainer";
 import ListContainer from "./ListContainer";
-import { Modal } from "antd";
 
 class Trello extends React.Component {
   constructor() {
@@ -71,7 +70,8 @@ class Trello extends React.Component {
 
   handleItemDrop = (itemId, newListId) => {
     let items = this.state.cards.map(
-      e => (e.id == itemId ? { name: e.name, id: e.id, list_id: newListId } : e)
+      e =>
+        e.id === itemId ? { name: e.name, id: e.id, list_id: newListId } : e
     );
     this.setState({
       cards: items
@@ -81,7 +81,7 @@ class Trello extends React.Component {
   render() {
     return (
       <div>
-        {this.state.active_board == -1 ? (
+        {this.state.active_board === -1 ? (
           <BoardContainer
             addBoard={this.addBoard}
             boards={this.state.boards}
@@ -93,7 +93,7 @@ class Trello extends React.Component {
             handleItemDrop={this.handleItemDrop}
             addList={this.addList}
             lists={this.state.lists.filter(
-              e => e.board_id == this.state.active_board
+              e => e.board_id === this.state.active_board
             )}
             addCard={this.addCard}
             cards={this.state.cards}

@@ -7,17 +7,20 @@
 }
 
 .Board {
-  width: 200px;
-  padding: 30px;
+  width: 33%;
+  padding: 10px;
 }
 
 .BoardContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
+
 .ListContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }

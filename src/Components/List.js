@@ -55,9 +55,9 @@ class List extends React.Component {
   moveItem = id => {};
 
   render() {
-    const { connectDropTarget, isOver } = this.props;
+    const { connectDropTarget } = this.props;
     return connectDropTarget(
-      <div class="List">
+      <div className="List">
         <Modal
           title="Add an Item to the List"
           visible={this.state.visible}
@@ -73,6 +73,7 @@ class List extends React.Component {
         <Card title={this.props.name}>
           {this.props.cards.map(c => (
             <Item
+              key={c.id}
               handleDrop={id => this.moveItem(id)}
               item={c}
               description={c.name}

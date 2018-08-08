@@ -20,7 +20,7 @@ function collect(connect, monitor, component) {
 
 class Item extends React.Component {
   render() {
-    const { isDragging, connectDragSource, item } = this.props;
+    const { connectDragSource } = this.props;
     return connectDragSource(
       <div className="Item">
         <span>{this.props.description}</span>
