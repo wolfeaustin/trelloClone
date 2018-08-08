@@ -1,7 +1,20 @@
 import React from "react";
 import { Card, Button, Input, Modal } from "antd";
-
+import { DropTarget } from "react-dnd";
 import Item from "./Item";
+
+const dropItem = {
+  drop(props, monitor, component) {
+    component.props.itemDrop(monitor.getItem().id, props.id);
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  };
+}
 
 class List extends React.Component {
   constructor() {
@@ -19,8 +32,6 @@ class List extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
-
     this.props.addCard(this.state.nameToAdd, this.props.id);
     this.setState({
       visible: false,
@@ -41,8 +52,11 @@ class List extends React.Component {
     });
   };
 
+  moveItem = id => {};
+
   render() {
-    return (
+    const { connectDropTarget, isOver } = this.props;
+    return connectDropTarget(
       <div class="List">
         <Modal
           title="Add an Item to the List"
@@ -57,7 +71,13 @@ class List extends React.Component {
           />
         </Modal>
         <Card title={this.props.name}>
-          {this.props.cards.map(c => <Item description={c.name} />)}
+          {this.props.cards.map(c => (
+            <Item
+              handleDrop={id => this.moveItem(id)}
+              item={c}
+              description={c.name}
+            />
+          ))}
         </Card>
         <Button onClick={this.handleNewClick}>Add Item</Button>
       </div>
@@ -65,4 +85,4 @@ class List extends React.Component {
   }
 }
 
-export default List;
+export default DropTarget("item", dropItem, collect)(List);

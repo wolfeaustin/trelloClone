@@ -19,7 +19,6 @@ class ListContainer extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
     this.props.addList(this.state.nameToAdd);
     this.setState({
       visible: false,
@@ -65,6 +64,7 @@ class ListContainer extends React.Component {
               id={e.id}
               cards={this.props.cards.filter(c => c.list_id == e.id)}
               addCard={this.props.addCard}
+              itemDrop={this.props.handleItemDrop}
             />
           ))}
         </div>

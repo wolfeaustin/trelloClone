@@ -69,6 +69,15 @@ class Trello extends React.Component {
     });
   };
 
+  handleItemDrop = (itemId, newListId) => {
+    let items = this.state.cards.map(
+      e => (e.id == itemId ? { name: e.name, id: e.id, list_id: newListId } : e)
+    );
+    this.setState({
+      cards: items
+    });
+  };
+
   render() {
     return (
       <div>
@@ -81,6 +90,7 @@ class Trello extends React.Component {
         ) : (
           <ListContainer
             handleBackToBoards={this.handleBackToBoards}
+            handleItemDrop={this.handleItemDrop}
             addList={this.addList}
             lists={this.state.lists.filter(
               e => e.board_id == this.state.active_board

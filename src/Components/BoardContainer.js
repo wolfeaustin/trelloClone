@@ -19,8 +19,6 @@ class BoardContainer extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
-
     this.props.addBoard(this.state.nameToAdd);
     this.setState({
       visible: false,
